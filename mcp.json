@@ -1,0 +1,43 @@
+{
+	"servers": {
+		"microsoft/playwright-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"@playwright/mcp@latest"
+			],
+			"gallery": "https://api.mcp.github.com",
+			"version": "0.0.1-seed"
+		},
+		"io.github.github/github-mcp-server": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/",
+			"gallery": "https://api.mcp.github.com",
+			"version": "1.4.0"
+		},
+		"splunk_server": {
+			"type": "stdio",
+			"sandboxEnabled": false,
+			"command": "${input:command}",
+			"cwd": "${input:cwd}",
+			"args": [],
+			"env": {}
+		},
+		"cribl-mcp-remote": {
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "http://localhost:3030/mcp", "--transport", "http"]
+		}
+	},
+	"inputs": [
+		{
+			"id": "command",
+			"type": "promptString",
+			"description": "Command"
+		},
+		{
+			"id": "cwd",
+			"type": "promptString",
+			"description": "Working Directory"
+		}
+	]
+}
